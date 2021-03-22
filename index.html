@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>AP Create Performance Task</title>
+    <style>
+#gradeLevelSelected{
+  border: 2px solid blue;
+}
+      </style>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  </head>
+  <body>
+
+    <div id = "displayArea">
+<form class="w3-container">
+
+<label class="w3-text-blue"><b>Full Name</b></label>
+<input class="w3-input w3-border" type="text" id="userName"><br>
+ 
+
+  <fieldset>
+          <legend>Select Grade Level</legend>
+          <p>
+             <select id = "gradeLevelSelected">
+               <option value = "6">6</option>
+               <option value = "7">7</option>
+               <option value = "8">8</option>
+               <option value = "9">9</option>
+               <option value = "10">10</option>
+               <option value = "11">11</option>
+               <option value = "12">12</option>
+             </select>
+          </p>
+       </fieldset><br>
+
+<div class="w3-panel w3-leftbar w3-light-blue">
+  <p class="w3-xlarge w3-serif">
+  <i>Select the highest level Math course you've taken. (top to bottom = highest to lowest)</i></p>
+</div>
+
+<input class="w3-radio" type="radio" name="course" value="0" >
+<label>IB HL Math</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="1">
+<label>AP Calculus (AB or BC)</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="2">
+<label>Calculus</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="3" >
+<label>AP Statistics</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="4">
+<label>Pre-Calculus</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="5" >
+<label>Algebra 2</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="6">
+<label>Geometry</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="7" >
+<label>Algebra 1</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="8">
+<label>Pre-Algebra</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="9" >
+<label>7th Grade On-Level Math</label><br>
+
+<input class="w3-radio" type="radio" name="course" value="10">
+<label>6th Grade On-Level Math</label><br><br>
+
+<button class="w3-btn w3-blue" id = "submitBtn">Submit</button>
+ 
+</form>
+
+</div>
+
+<div id = "outputDisplayArea">
+  Your results:
+  </div>
+
+    <script>
+    //grabbing the button and adding listener to trigger allSystemsGo function
+var submitBtn = document.getElementById("submitBtn");
+submitBtn.addEventListener("click",allSystemsGo,false);
+
+//grab the displayArea div tag and set it to be visible until the form is submitted
+var displayArea = document.getElementById("displayArea");
+displayArea.style.display = "block"
+
+
+//global array of courses
+var course = ["IB HL Math","AP Calculus (AB or BC)","Calculus","AP Statistics","Pre-Calculus","Algebra 2","Geometry","Algebra 1","Pre-Algebra","7th Grade On-Level Math","6th Grade On-Level Math"];
+
+//allSystemsGo function
+
+function allSystemsGo(e)
+{
+  e.preventDefault();
+
+//grabs course chosen
+  var courseSelections = document.getElementsByName("course");
+  for(var i = 0; i < courseSelections.length; i++)
+{
+if(courseSelections[i].checked)
+{
+  //courseFinal is variable that is used to determine if user selected a course
+var courseFinal = course[i];
+
+  
+}
+}
+
+  var gradeLevel = document.getElementById("gradeLevelSelected").value;
+
+  //collect the user's name
+var userName = document.getElementById("userName").value;
+
+  //determine if user put in their inputs. if not, they must do so.
+
+  if(!courseFinal || !gradeLevel || !userName)
+  {
+    alert("FILL OUT THE FORM.");
+  }
+  else
+  {
+    mathLevel(courseFinal,gradeLevel,userName);
+  }
+}
+
+//mathLevel function to determine whether user is behind, on-level, or ahead in math for their grade level
+
+function mathLevel(courseFinal,gradeLevel,userName)
+{
+  //variable that is given to course value checker and gradelevel
+  var j = 10;
+  var c = 6;
+  
+//while loop that determines if the user is ahead, behind, or on-level for their grade level and math class
+  
+do
+{
+  if(gradeLevel == c && course.indexOf(courseFinal.toString()) < j)
+  {
+    displayArea.style.display = "none";
+    outputDisplayArea.innerHTML = userName + ", you are ahead in math for your grade level.";
+  }
+  else if(gradeLevel == c && course.indexOf(courseFinal.toString()) == j)
+  {
+    displayArea.style.display = "none";
+     outputDisplayArea.innerHTML = userName + ", you are on level in math for your grade level.";
+  }
+  else if(gradeLevel == c && course.indexOf(courseFinal.toString()) > j)
+  {
+    displayArea.style.display = "none";
+     outputDisplayArea.innerHTML = userName + ", you are behind in math for your grade level.";
+  }
+  j--;
+  c++;
+}
+  while(c <= 12);
+
+}
+   
+      //The CSS Design elements came from W3 schools: https://www.w3schools.com/w3css/default.asp
+
+    
+    </script>
+  
+
+</body>
+</html>
