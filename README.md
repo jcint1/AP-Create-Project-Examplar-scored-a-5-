@@ -2,7 +2,7 @@
 
 This repository is intended to be used as an examplar 
 for classes or individuals seeking help or direction 
-on their AP Create Project, especially if using JavaScript 
+on their AP Create Project, especially if using HTML/JavaScript/CSS 
 as the source language. This project was made by me last year
 for the AP Create and ended up scoring a 5, as it followed
 all guidelines. This project is a program that takes the 
